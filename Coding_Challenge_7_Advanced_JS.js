@@ -4,7 +4,7 @@ function Question (question, choices, answer) {
     choices: choices,
     answer: answer,
     displayQuestion: function () {
-      var choices  
+      var choices = this.choices
       
       for(var i = 0; i < choices.length ; i++){
         choices += i + ': '  + choices[i] + '/n'
@@ -23,7 +23,7 @@ var questions = [guessMyBirthday, guessCurrentLocation, guessFavoriteAuthor]
 
 function playRound (questions) {
  // select random questions
-  var whichQuestion = Math.ceil(Math.random * questions.length)
+  var whichQuestion = Math.ceil(Math.random() * questions.length-1)
   var question = questions[whichQuestion]
 
   var  answer = prompt(question.displayQuestion())
@@ -42,10 +42,10 @@ function playRound (questions) {
 
 var playAgain
 
-playAgain = playRound()
+playAgain = playRound(questions)
 
 while(playAgain === 'y' || playAgain === 'yes'){
-  playRound()
+  playRound(questions)
 } 
 
 console.log("that's the end friend!")
