@@ -36,5 +36,5 @@ var interviewQuestionTeacher = interviewQuestion('teacher')
 var interviewQuestionGeneric = interviewQuestion('generic')
 
 interviewQuestionDesigner('Jim')
-interviewQuestionTeacher('Hilary')
-interviewQuestionGeneric('Vincent')
+interviewQuestionTeacher('Jamaica')
+interviewQuestionGeneric('Lydia')
