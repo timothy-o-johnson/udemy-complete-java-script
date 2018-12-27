@@ -40,14 +40,12 @@
 
     if (answer === question.answer.toString()) {
       console.log('bing bong! that is correct')
-      console.log('score: ' + ++score)
-      console.log('==================================')      
+      console.log('score: ' + ++score)    
     } else {
       console.log('oops! try again')
       console.log('score: ' + score)
-      console.log('==================================')
     }
-
+    console.log('==================================')   
     playAgain = prompt('Play again?').toLowerCase()
 
     return playAgain
