@@ -1,4 +1,4 @@
-// testing git username update
+// testing git email update
 
 // BUDGET CONTROLLER
 var budgetController = (function () {
