@@ -2,7 +2,57 @@
 
 // BUDGET CONTROLLER
 var budgetController = (function () {
-  // some code
+  var Expense = function (id, description, value) {
+    this.id = id
+    this.description = description
+    this.value = value
+  }
+
+  var Income = function (id, description, value) {
+    this.id = id
+    this.description = description
+    this.value = value
+  }
+
+  var data = {
+    allItems: {
+      exp: [],
+      inc: []
+    },
+
+    totals: {
+      exp: 0,
+      inc: 0
+    }
+  }
+
+  return {
+    addItem: function (type, des, val) {
+      var newItem
+
+      // determine which array to add element
+      var array = data.allItems[type]
+      var position = array.length - 1
+
+      // determine ID value by ++ the ID of the last element in the array
+      // if there's nothing in the array set ID to 1
+      var ID = position < 0 ? 1 : array[position].id + 1
+
+      if (type === 'exp') {
+        newItem = new Expense(ID, des, val)
+      } else if (type === 'inc') {
+        newItem = new Income(ID, des, val)
+      }
+
+      array.push(newItem)
+
+      return newItem
+    },
+
+    testing: function () {
+      console.log(data)
+    }
+  }
 })()
 
 // UI CONTROLLER
@@ -17,7 +67,7 @@ var UIController = (function () {
   return {
     getInput: function () {
       return {
-        type: document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
+        type: document.querySelector(DOMstrings.inputType).value, // will be either inc (income) or exp (expense)
         description: document.querySelector(DOMstrings.inputDescription).value,
         value: document.querySelector(DOMstrings.inputValue).value
       }
@@ -44,11 +94,15 @@ var controller = (function (budgetCtrl, UICtrl) {
   }
 
   var ctrlAddItem = function () {
+    var input, newItem
     // 1. Get field input data
-    var input = UIController.getInput()
+    input = UIController.getInput()
     console.log(input)
 
     // 2. Add item to the budget controller
+    newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+    budgetController.testing()
+
     // 3. Add item to the UI
     // 4. Calculate the budget
     // 5. Display the budget on the UI
