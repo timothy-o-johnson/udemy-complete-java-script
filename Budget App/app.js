@@ -121,10 +121,10 @@ var UIController = (function () {
       if (type === 'inc') {
         element = DOMstrings.incomeContainer
         html =
-          '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+          '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
       } else if (type === 'exp') {
         element = DOMstrings.expensesContainer
-        html = ` <div class="item clearfix" id="income-%id%">
+        html = ` <div class="item clearfix" id="inc-%id%">
             <div class="item__description">%description%</div>
             <div class="right clearfix">
                 <div class="item__value">%value%</div>
@@ -173,7 +173,6 @@ var UIController = (function () {
 
 // GLOBAL APP CONTROLLER
 var controller = (function (budgetCtrl, UICtrl) {
-
   var initialValues = {
     budget: 0,
     totalInc: 0,
@@ -227,6 +226,30 @@ var controller = (function (budgetCtrl, UICtrl) {
       updateBudget()
     }
   }
+
+  var ctrlDeleteItem = function(event) {
+
+    var itemID
+    var splitID
+    var type
+    var ID
+
+    itemID = event.target.parentNode.parentNode.parentNode.parentNode.id
+
+    if (itemID){
+      // inc-1
+      splitID = itemID.split('-')
+      type = splitID[0]
+      ID = splitID[1]
+
+      // 1. delete item from data structure
+      // 2. delete item from the UI
+      // 3. update and show new budget
+    }
+
+  }
+
+
   return {
     init: function () {
       console.log('Application has started.')
